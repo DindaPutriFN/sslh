@@ -130,6 +130,6 @@ cat /etc/xray/xray.crt /etc/xray/xray.key > /etc/xray/funny.pem
 ```
 # Explanation:
 - cat /etc/xray/xray.crt /etc/xray/xray.key > /etc/xray/funny.pem: Concatenates the certificate (xray.crt) and the private key (xray.key) into a single PEM file (funny.pem).
-`This explanation is only a brief explanation for the Multiport 443 configuration in all the protocols above, please adjust it to your own server.`
+
 
 `This explanation is only a brief explanation for the Multiport 443 configuration in all the protocols above, please adjust it to your own server.`
