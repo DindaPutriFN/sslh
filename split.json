@@ -1,0 +1,232 @@
+{
+ "log" : {
+  "access": "/var/log/xray/access.log",
+  "loglevel": "warning"
+ },
+   "dns": {
+    "servers": [
+      "1.1.1.1",   // Cloudflare (Global)
+      "1.0.0.1",   // Cloudflare (Global)
+      "8.8.8.8",   // Google DNS (Global)
+      "8.8.4.4",   // Google DNS (Global)
+      "185.228.168.10", // Cleanbrowsing (Global)
+      "185.228.168.11", // Cleanbrowsing (Global)
+      "94.140.14.14",   // AdGuard (Global)
+      "94.140.15.15",   // AdGuard (Global)
+      "9.9.9.9",   // Quad9 (Global)
+      "149.112.112.112", // Quad9 (Global)
+      "77.88.8.8", // Yandex DNS (Russia)
+      "77.88.8.1", // Yandex DNS (Russia)
+      "208.67.222.222", // OpenDNS (Global)
+      "208.67.220.220", // OpenDNS (Global)
+      "185.51.200.2",   // DNS.Watch (Germany)
+      "185.51.200.3",   // DNS.Watch (Germany)
+      "176.103.130.130", // DNSResolver (Germany)
+      "176.103.130.131", // DNSResolver (Germany)
+      "208.67.222.222", // OpenDNS (USA)
+      "208.67.220.220", // OpenDNS (USA)
+      "213.73.91.35",  // FDN (France)
+      "213.251.188.177" // FDN (France)
+    ],
+    "tag": "dns-in"
+    },
+  "inbounds": [
+    {
+      "listen": "127.0.0.1",
+      "port": 10087,
+      "protocol": "dokodemo-door",
+      "settings": {
+        "address": "127.0.0.1"
+      },
+      "tag": "api"
+    },
+    {
+      "listen": "127.0.0.1",
+      "port": 6712,
+      "protocol": "vless",
+      "settings": {
+        "decryption": "none",
+        "clients": [
+          {
+            "id": "cfbbaafc-8d52-450c-9fb0-145bc8221e6d"
+#vless
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "splithttp",
+        "splithttpSettings": {
+          "path": "/vless-split"
+        }
+      }
+    },
+    {
+      "listen": "127.0.0.1",
+      "port": 6718,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "rerechan-store",
+            "alterId": 0
+#vmess
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "splithttp",
+        "splithttpSettings": {
+          "path": "/vmess-split"
+        }
+      }
+    },
+    {
+      "listen": "127.0.0.1",
+      "port": 6719,
+      "protocol": "trojan",
+      "settings": {
+        "decryption": "none",
+        "clients": [
+          {
+            "password": "rerechan-store"
+#trojan
+          }
+        ],
+        "udp": true
+      },
+      "streamSettings": {
+        "network": "splithttp",
+        "splithttpSettings": {
+          "path": "/trojan-split"
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {
+        "domainStrategy": "UseIP"
+      },
+      "tag": "direct"
+    },
+    {
+      "protocol": "blackhole",
+      "settings": {},
+      "tag": "blocked"
+    }
+  ],
+  "routing": {
+    "domainStrategy": "IPIfNonMatch",
+    "rules": [
+      {
+        "type": "field",
+        "domain": [
+          "ui.ac.id",
+          "itb.ac.id",
+          "ugm.ac.id",
+          "unair.ac.id",
+          "undip.ac.id",
+          "ub.ac.id",
+          "its.ac.id",
+          "harvard.edu",
+          "mit.edu",
+          "stanford.edu",
+          "ox.ac.uk",
+          "cam.ac.uk",
+          "caltech.edu",
+          "u-tokyo.ac.jp",
+          "www.zoom.us",
+          "support.zoom.us",
+          "udemy.com",
+          "coursera.org",
+          "khanacademy.org",
+          "edx.org",
+          "linkedin.com/learning",
+          "codecademy.com",
+          "k12.com",
+          "pluralsight.com",
+          "futurelearn.com",
+          "skillshare.com",
+          "teachable.com",
+          "teamtreehouse.com",
+          "academicearth.org",
+          "openlearning.com",
+          "saylor.org",
+          "ocw.mit.edu",
+          "online-learning.harvard.edu",
+          "www.google.com",
+          "www.speedtest.net/id",
+          "github.com",
+          "xl.co.id",
+          "axis.co.id"
+        ],
+        "outboundTag": "direct"
+      },
+      {
+        "type": "field",
+        "ip": [
+          "geoip:us",
+          "geoip:jp",
+          "geoip:sg",
+          "geoip:cn",
+          "geoip:my",
+          "geoip:au",
+          "geoip:kr",
+          "geoip:tw",
+          "geoip:ph",
+          "geoip:vn",
+          "geoip:id",
+          "geoip:br",
+          "geoip:ru",
+          "geoip:de",
+          "geoip:fr",
+          "geoip:za",
+          "geoip:in"
+        ],
+        "outboundTag": "direct"
+      },
+      {
+        "type": "field",
+        "ip": [
+          "0.0.0.0/8",
+          "10.0.0.0/8",
+          "100.64.0.0/10",
+          "169.254.0.0/16",
+          "172.16.0.0/12",
+          "192.0.0.0/24",
+          "192.0.2.0/24",
+          "192.168.0.0/16",
+          "198.18.0.0/15",
+          "198.51.100.0/24",
+          "203.0.113.0/24",
+          "::1/128",
+          "fc00::/7",
+          "fe80::/10"
+        ],
+        "outboundTag": "blocked"
+      }
+    ]
+  },
+  "stats": {},
+  "api": {
+    "services": [
+      "StatsService"
+    ],
+    "tag": "api"
+  },
+  "policy": {
+    "levels": {
+      "0": {
+        "statsUserDownlink": true,
+        "statsUserUplink": true
+      }
+    },
+    "system": {
+      "statsInboundUplink": true,
+      "statsInboundDownlink": true,
+      "statsOutboundUplink": true,
+      "statsOutboundDownlink": true
+    }
+  }
+}
