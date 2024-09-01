@@ -1,6 +1,6 @@
 {
  "log" : {
-  "access": "/var/log/xray/access.log",
+  "access": "/var/log/xray/access1.log",
   "loglevel": "warning"
  },
    "dns": {
