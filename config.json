@@ -388,7 +388,6 @@
       }
     }
   ],
-
   "outbounds": [
     {
       "protocol": "freedom",
@@ -401,11 +400,6 @@
       "protocol": "blackhole",
       "settings": {},
       "tag": "blocked"
-    },
-    {
-      "protocol": "blackhole",
-      "settings": {},
-      "tag": "block-ads"
     }
   ],
   "routing": {
@@ -414,6 +408,44 @@
       {
         "type": "field",
         "domain": [
+          "ui.ac.id",
+          "itb.ac.id",
+          "ugm.ac.id",
+          "unair.ac.id",
+          "undip.ac.id",
+          "ub.ac.id",
+          "its.ac.id",
+          "harvard.edu",
+          "mit.edu",
+          "stanford.edu",
+          "ox.ac.uk",
+          "cam.ac.uk",
+          "caltech.edu",
+          "u-tokyo.ac.jp",
+          "www.zoom.us",
+          "support.zoom.us",
+          "udemy.com",
+          "coursera.org",
+          "khanacademy.org",
+          "edx.org",
+          "linkedin.com/learning",
+          "codecademy.com",
+          "k12.com",
+          "pluralsight.com",
+          "futurelearn.com",
+          "skillshare.com",
+          "teachable.com",
+          "teamtreehouse.com",
+          "academicearth.org",
+          "openlearning.com",
+          "saylor.org",
+          "ocw.mit.edu",
+          "online-learning.harvard.edu",
+          "www.google.com",
+          "www.speedtest.net/id",
+          "github.com",
+          "xl.co.id",
+          "axis.co.id",
           "google.com",
           "youtube.com",
           "drive.google.com",
@@ -459,7 +491,8 @@
           "xnxx.com",
           "spankbang.com",
           "xvideos.com",
-          "xhamster.com"
+          "xhamster.com",
+          "nhentai.net"
         ],
         "outboundTag": "direct"
       },
@@ -482,7 +515,8 @@
           "geoip:de",
           "geoip:fr",
           "geoip:za",
-          "geoip:in"
+          "geoip:in",
+          "geoip:id"
         ],
         "outboundTag": "direct"
       },
@@ -505,68 +539,33 @@
           "fe80::/10"
         ],
         "outboundTag": "blocked"
-      },
-        "stats": {},
-          "api": {
-            "services": [
-             "StatsService"
-                      ],
-                        "tag": "api"
-                    },
-              "policy": {
-                "levels": {
-                  "0": {
-                    "statsUserDownlink": true,
-                    "statsUserUplink": true
-                  }
-                },
-           "system": {
-                  "statsInboundUplink": true,
-                  "statsInboundDownlink": true,
-                  "statsOutboundUplink": true,
-                 "statsOutboundDownlink": true
-       }
-      },
-      {
-        "type": "field",
-        "domain": [
-          "ad.*",
-          "*.ad",
-          "*.advertising",
-          "*.ads",
-          "*.adserver",
-          "*.doubleclick.net",
-          "*.googlesyndication.com",
-          "*.track.ad",
-          "*.analytics.google.com"
-        ],
-        "outboundTag": "block-ads"
-      },
-      {
-        "type": "field",
-        "geosite": [
-          "cn",  // China
-          "us",  // United States
-          "jp",  // Japan
-          "sg",  // Singapore
-          "kr",  // South Korea
-          "au",  // Australia
-          "fr",  // France
-          "de",  // Germany
-          "gb",  // United Kingdom
-          "ru",  // Russia
-          "in",  // India
-          "hk",  // Hong Kong
-          "id", // Indonesia Bjir
-          "tw"   // Taiwan
-        ],
-        "outboundTag": "direct"
       }
     ]
   },
-  "settings": {
-    "keepAlive": {
-      "interval": 30
+  "stats": {},
+  "api": {
+    "services": [
+      "StatsService"
+    ],
+    "tag": "api"
+  },
+  "policy": {
+    "levels": {
+      "0": {
+        "statsUserDownlink": true,
+        "statsUserUplink": true
+      }
+    },
+    "system": {
+      "statsInboundUplink": true,
+      "statsInboundDownlink": true,
+      "statsOutboundUplink": true,
+      "statsOutboundDownlink": true
     }
+  },
+  "settings": {
+  "keepAlive": {
+    "interval": 30
   }
+ }
 }
