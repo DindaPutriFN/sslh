@@ -391,10 +391,7 @@
   "outbounds": [
     {
       "protocol": "freedom",
-      "settings": {
-        "domainStrategy": "UseIP"
-      },
-      "tag": "direct"
+      "settings": {}
     },
     {
       "protocol": "blackhole",
@@ -403,123 +400,7 @@
     }
   ],
   "routing": {
-    "domainStrategy": "IPIfNonMatch",
     "rules": [
-      {
-        "type": "field",
-        "domain": [
-          "ui.ac.id",
-          "itb.ac.id",
-          "ugm.ac.id",
-          "unair.ac.id",
-          "undip.ac.id",
-          "ub.ac.id",
-          "its.ac.id",
-          "harvard.edu",
-          "mit.edu",
-          "stanford.edu",
-          "ox.ac.uk",
-          "cam.ac.uk",
-          "caltech.edu",
-          "u-tokyo.ac.jp",
-          "www.zoom.us",
-          "support.zoom.us",
-          "udemy.com",
-          "coursera.org",
-          "khanacademy.org",
-          "edx.org",
-          "linkedin.com/learning",
-          "codecademy.com",
-          "k12.com",
-          "pluralsight.com",
-          "futurelearn.com",
-          "skillshare.com",
-          "teachable.com",
-          "teamtreehouse.com",
-          "academicearth.org",
-          "openlearning.com",
-          "saylor.org",
-          "ocw.mit.edu",
-          "online-learning.harvard.edu",
-          "www.google.com",
-          "www.speedtest.net/id",
-          "github.com",
-          "xl.co.id",
-          "axis.co.id",
-          "google.com",
-          "youtube.com",
-          "drive.google.com",
-          "docs.google.com",
-          "mail.google.com",
-          "play.google.com",
-          "gstatic.com",
-          "facebook.com",
-          "twitter.com",
-          "instagram.com",
-          "linkedin.com",
-          "pinterest.com",
-          "tiktok.com",
-          "reddit.com",
-          "snapchat.com",
-          "twitch.tv",
-          "whatsapp.com",
-          "web.whatsapp.com",
-          "telegram.org",
-          "shopee.com",
-          "lazada.com",
-          "bukalapak.com",
-          "tokopedia.com",
-          "mobilelegends.com",
-          "freefire.garena.com",
-          "pubgmobile.com",
-          "fortnite.com",
-          "valorant.com",
-          "apexlegends.com",
-          "callofduty.com",
-          "epicgames.com",
-          "battle.net",
-          "steam.com",
-          "origin.com",
-          "gog.com",
-          "discord.com",
-          "skype.com",
-          "zoom.us",
-          "microsoft.com",
-          "adobe.com",
-          "salesforce.com",
-          "pornhub.com",
-          "xnxx.com",
-          "spankbang.com",
-          "xvideos.com",
-          "xhamster.com",
-          "nhentai.net"
-        ],
-        "outboundTag": "direct"
-      },
-      {
-        "type": "field",
-        "ip": [
-          "geoip:us",
-          "geoip:jp",
-          "geoip:sg",
-          "geoip:cn",
-          "geoip:my",
-          "geoip:au",
-          "geoip:kr",
-          "geoip:tw",
-          "geoip:ph",
-          "geoip:vn",
-          "geoip:id",
-          "geoip:br",
-          "geoip:ru",
-          "geoip:de",
-          "geoip:fr",
-          "geoip:za",
-          "geoip:in",
-          "geoip:id"
-        ],
-        "outboundTag": "direct"
-      },
       {
         "type": "field",
         "ip": [
@@ -539,6 +420,20 @@
           "fe80::/10"
         ],
         "outboundTag": "blocked"
+      },
+      {
+        "inboundTag": [
+          "api"
+        ],
+        "outboundTag": "api",
+        "type": "field"
+      },
+      {
+        "type": "field",
+        "outboundTag": "blocked",
+        "protocol": [
+          "bittorrent"
+        ]
       }
     ]
   },
@@ -559,13 +454,8 @@
     "system": {
       "statsInboundUplink": true,
       "statsInboundDownlink": true,
-      "statsOutboundUplink": true,
-      "statsOutboundDownlink": true
+      "statsOutboundUplink" : true,
+      "statsOutboundDownlink" : true
     }
-  },
-  "settings": {
-  "keepAlive": {
-    "interval": 30
   }
- }
 }
